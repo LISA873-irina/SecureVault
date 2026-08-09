@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "securerecords.h"
+#include<string.h>
 
 void secureRecords(){
 
@@ -50,8 +51,24 @@ void secureRecords(){
             printf("Invalid choice!\n");
         }
 
-
+    }
         void addRecord(){
+
+            SecureRecord newRecord;
+            printf("Enter record name: ");
+            scanf(" %[^\n]", newRecord.recordName);
+            printf("Enter details: ");
+            scanf(" %[^\n]", newRecord.details);
+
+            FILE *file = fopen("secure_records.dat", "ab");
+            if (file == NULL)
+            {
+                printf("Unable to open file!\n");
+                return;
+            }
+            fwrite(&newRecord, sizeof(newRecord), 1, file);
+            fclose(file) ;
+            printf("Record added successfully!\n");
 
         }
 
@@ -76,4 +93,3 @@ void secureRecords(){
         }
 
     }
-}
