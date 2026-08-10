@@ -74,6 +74,22 @@ void secureRecords(){
 
         void viewRecord(){
 
+             FILE *file = fopen("secure_records.dat", "rb");
+             if (file == NULL)
+            {
+                printf("No secure records found!\n");
+                return;
+            }
+
+            SecureRecord recordRead;
+            while (fread(&recordRead, sizeof(recordRead), 1, file) == 1)
+            {
+                printf("\nRecord Name: %s\n", recordRead.recordName);
+                printf("Details: %s\n", recordRead.details);
+            }
+
+            fclose(file);
+
         }
 
         void updateRecord(){
