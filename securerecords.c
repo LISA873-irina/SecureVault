@@ -52,6 +52,7 @@ void secureRecords(){
         }
 
     }
+}
         void addRecord(){
 
             SecureRecord newRecord;
@@ -94,7 +95,57 @@ void secureRecords(){
 
         void updateRecord(){
 
+            char searchRecordName[50];
+            printf("Enter record name to update: ");
+            scanf(" %[^\n]", searchRecordName);
+            int found = 0;
+
+            FILE *file = fopen("secure_records.dat", "rb");
+            if (file == NULL)
+            {
+                printf("No secure records found!\n");
+                return;
+            }
+
+            FILE *tempFile = fopen("temp_secure_records.dat", "wb");
+
+            if (tempFile == NULL)
+            {
+                printf("Unable to create temporary file!\n");
+                fclose(file);
+                return;
+            }
+            SecureRecord updateRecordRead;
+            while (fread(&updateRecordRead, sizeof(updateRecordRead), 1, file) == 1)
+            {
+                if (strcmp(updateRecordRead.recordName, searchRecordName) == 0)
+                {
+                   printf("Enter new details: ");
+                   scanf(" %[^\n]", updateRecordRead.details);
+                   found = 1;
+                }
+
+                fwrite(&updateRecordRead, sizeof(updateRecordRead), 1, tempFile);
+                                
+            }
+
+            fclose(file);
+            fclose(tempFile);
+
+            remove("secure_records.dat");
+            rename("temp_secure_records.dat", "secure_records.dat");
+            if (found == 1)
+            {
+                printf("Record updated successfully!\n");
+            }
+            else
+            {
+                printf("Record not found!\n");
+            }
+
+
         }
+
 
         void deleteRecord(){
 
@@ -108,4 +159,4 @@ void secureRecords(){
 
         }
 
-    }
+    
