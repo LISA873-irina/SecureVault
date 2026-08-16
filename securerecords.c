@@ -147,11 +147,96 @@ void secureRecords(){
         }
 
 
-        void deleteRecord(){
 
-        }
+            void deleteRecord()
+            {
+                char deleteRecordName[50];
+
+                printf("Enter record name to delete: ");
+                scanf(" %[^\n]", deleteRecordName);
+                int foundRecord = 0;
+
+                FILE *file = fopen("secure_records.dat", "rb");
+                if (file == NULL)
+                {
+                    printf("No secure records found!\n");
+                    return;
+                }
+
+                FILE *tempFile = fopen("temp_secure_records.dat", "wb");
+
+                if (tempFile == NULL)
+                {
+                    printf("Unable to create temporary file!\n");
+                    fclose(file);
+                    return;
+                }
+
+                SecureRecord foundRecordRead;
+
+                while (fread(&foundRecordRead, sizeof(foundRecordRead), 1, file) == 1)
+                {
+                    if (strcmp(foundRecordRead.recordName, deleteRecordName) == 0)
+                    {
+                        foundRecord = 1;
+                    }
+
+                    if (strcmp(foundRecordRead.recordName, deleteRecordName) != 0)
+                    {
+                        fwrite(&foundRecordRead, sizeof(foundRecordRead), 1, tempFile);
+                    }
+
+                }
+
+                fclose(file);
+                fclose(tempFile);
+
+                remove("secure_records.dat");
+                rename("temp_secure_records.dat", "secure_records.dat");
+
+                if (foundRecord == 1)
+                {
+                    printf("Record deleted successfully!\n");
+                }
+                else
+                {
+                    printf("Record not found!\n");
+                }
+            }
+
+        
 
         void searchRecord(){
+                char searchRecordName[50];
+                int foundRecord = 0;
+
+                printf("Enter record name to search: ");
+                scanf(" %[^\n]", searchRecordName);
+
+                FILE *file = fopen("secure_records.dat", "rb");
+                if (file == NULL)
+                {
+                    printf("No secure records found!\n");
+                    return;
+                }
+
+                SecureRecord searchRecordRead;
+
+                while (fread(&searchRecordRead, sizeof(searchRecordRead), 1, file) == 1)
+                {
+                    if (strcmp(searchRecordRead.recordName, searchRecordName) == 0)
+                    {
+                        printf("\nRecord Name: %s\n", searchRecordRead.recordName);
+                        printf("Details: %s\n", searchRecordRead.details);
+                        foundRecord = 1;
+                    }
+                }
+                fclose(file);
+
+                if (foundRecord == 0)
+                {
+                    printf("Record not found!\n");
+                }
 
         }
 
