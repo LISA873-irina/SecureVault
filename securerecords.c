@@ -13,8 +13,7 @@ void secureRecords(){
         printf("3. Update Record\n");
         printf("4. Delete Record\n");
         printf("5. Search Record\n");
-        printf("6. Sort Records\n");
-        printf("7. Back\n");
+        printf("6. Back\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -39,11 +38,8 @@ void secureRecords(){
 
             searchRecord();
         }
+        
         else if (choice == 6){
-
-            sortRecord();
-        }
-        else if (choice == 7){
 
             return;
         }
@@ -240,8 +236,6 @@ void secureRecords(){
 
         }
 
-        void sortRecord(){
-
-        }
+       
 
     

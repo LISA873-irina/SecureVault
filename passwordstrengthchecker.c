@@ -13,7 +13,7 @@ void passwordStrengthChecker(){
     int lower = 0;
     int digit = 0;
     int special = 0;
-    int space = 0;
+    
 
     for(int i = 0; password[i] != '\0'; i++){
 
@@ -38,6 +38,7 @@ void passwordStrengthChecker(){
         {
             special = 1;
         }
+    }
 
         score = upper + lower + digit + special;
 
@@ -60,4 +61,3 @@ void passwordStrengthChecker(){
         }
     }
 
-}

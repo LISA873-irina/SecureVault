@@ -8,11 +8,9 @@
 #include "backup.h"
 #include "restore.h"
 
-void dashboard(const char username[])
+void dashboard( char username[])
 {
     int choice;
-
-    printf("\n===== SecureVault Dashboard =====\n");
 
     while (1)
     {
