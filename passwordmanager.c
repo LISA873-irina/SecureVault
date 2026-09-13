@@ -11,9 +11,9 @@ void passwordManager(){
     printf("3. Update Password\n");
     printf("4. Delete Password\n");
     printf("5. Search Password\n");
-    printf("5. Password Strength Checker\n");
-    printf("6. Back\n");
-    
+    printf("6. Password Strength Checker\n");
+    printf("7. Back\n");
+
     printf("Enter your password choice: ");
     scanf("%d", &passwordChoice);
 
@@ -40,11 +40,11 @@ void passwordManager(){
         {
             searchPassword();
         }
-        else if (passwordChoice == 5)
+        else if (passwordChoice == 6)
         {
             passwordStrengthChecker() ;
         }
-        else if (passwordChoice == 6)
+        else if (passwordChoice == 7)
         {
             return ;
 
