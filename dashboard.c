@@ -27,12 +27,12 @@ void dashboard( char username[])
         if (choice == 1)
         {
             activityLog(username, "OPENED PASSWORD MANAGER");
-            passwordManager(username);
+            passwordManager();
         }
         else if (choice == 2)
         {
             activityLog(username, "OPENED SECURE RECORDS");
-            secureRecords(username);
+            secureRecords();
         }
         else if (choice == 3)
         {

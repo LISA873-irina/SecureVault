@@ -34,7 +34,7 @@ void loginUser(){
     if (found == 1)
     {
     printf("Login successful!\n");
-    dashboard();
+    dashboard(username);
 
     }
     else
